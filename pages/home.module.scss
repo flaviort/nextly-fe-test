@@ -1,0 +1,35 @@
+.news {
+    .slider {
+        margin: var(--smallest) 0;
+        overflow: visible;
+
+        & :global {
+            .swiper-slide {
+                height: auto;
+
+                > div {
+                    height: 100%;
+
+                    a {
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.events {
+    .blocks {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin: var(--smallest) 0;
+    }
+
+    .button {
+        @media #{$mq-sm-max} {
+            width: 100%;
+        }
+    }
+}

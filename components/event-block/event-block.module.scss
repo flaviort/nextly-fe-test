@@ -1,0 +1,126 @@
+.block {
+    display: block;
+    position: relative;
+    background-color: $green;
+    padding: var(--smaller);
+    box-shadow: 0 0 0 0 transparent, inset 0 0 0 1px transparent;
+    border-radius: .25rem;
+    transition: .3s ease-in-out;
+
+    @media #{$mq-sm-min} {
+        padding: var(--smaller) calc(var(--smaller) * 3) var(--smaller) var(--smaller);
+    }
+
+    @media #{$mq-md-min} {
+        display: flex;
+        justify-content: space-between;
+        gap: 3rem;
+    }
+
+    &:hover {
+        transform: translateY(-.125rem);
+        box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, .1), inset 0 0 0 1px $black;
+
+        .last {
+            .icon {
+                svg {
+                    transform: translateX(150%);
+                }
+            }
+        }
+    }
+
+    .left {
+        @media #{$mq-md-min} {
+            width: 30%;
+        }
+
+        .date {
+            display: inline-block;
+            line-height: 1;
+            color: $white;
+            background-color: $black;
+            border-radius: .25rem;
+            padding: .5rem .75rem;
+            margin-bottom: 1rem;
+        }
+
+        .title {
+            @media #{$mq-md-min} {
+                width: 20rem;
+                max-width: 100%;
+            }
+        }
+    }
+
+    .right {
+        margin: 1rem 0;
+
+        @media #{$mq-sm-min} {
+            margin-bottom: 0;
+        }
+
+        @media #{$mq-md-min} {
+            width: calc(70% - 2rem);
+            margin-top: 0;
+        }
+
+        .description {
+            @media #{$mq-md-min} {
+                width: 35rem;
+                max-width: 100%;
+            }
+        }
+
+        .items {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            margin-top: 1rem;
+
+            li {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                svg {
+                    width: 1.25rem;
+                    min-width: 1.25rem;
+                    height: 1.25rem;
+                }
+            }
+        }
+    }
+
+    .last {
+        display: flex;
+        justify-content: flex-end;
+
+        @media #{$mq-sm-min} {
+            position: absolute;
+            top: 50%;
+            right: var(--smaller);
+            transform: translateY(-50%);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon {
+            position: relative;
+            overflow: hidden;
+            width: 1.5rem;
+            min-width: 1.5rem;
+            height: 1.5rem;
+
+            svg {
+                transition: .3s ease-in-out;
+
+                &:first-child {
+                    position: absolute;
+                    top: 0;
+                    left: -150%;
+                }
+            }
+        }
+    }
+}
