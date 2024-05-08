@@ -11,6 +11,7 @@ export default function Button({
     type,
     isHollow,
     isCentered,
+    isTransparent,
     className,
     ...rest
 }) {
@@ -25,6 +26,7 @@ export default function Button({
             styles.button,
             isHollow && styles.isHollow,
             isCentered && styles.isCentered,
+            isTransparent && styles.isTransparent,
             className && className
         ),
         ...rest

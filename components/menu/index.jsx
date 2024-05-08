@@ -9,44 +9,26 @@ import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
+// components
+import Button from '@/components/button'
+import Logo from '@/components/utils/logo'
+
 // routes / utils
 import routes from '@/utils/routes'
-import { debounce } from '@/utils/functions'
 
 // svgs
-import Logo from '@/assets/svg/logos/logo.svg'
+import UxPerson from '@/assets/svg/ux/person.svg'
+import UxMagnifier from '@/assets/svg/ux/magnifier.svg'
 
 // css
 import styles from './menu.module.scss'
+import { MagneticButton } from '../utils/animations'
 
 export default function Menu() {
 
     // animation ref
     const menuAnimationRef = useRef(null)
-    
-    const lenis = useLenis(({progress}) => {
-        if(progress > .01) {
-            debounce(() => {
-                gsap.to('.top-menu-texts-static', {
-                    autoAlpha: 0
-                })
-    
-                gsap.to('.top-menu-texts-scroll', {
-                    autoAlpha: 1
-                })
-            }, 300)()
-        } else {
-            debounce(() => {
-                gsap.to('.top-menu-texts-static', {
-                    autoAlpha: 1
-                })
-
-                gsap.to('.top-menu-texts-scroll', {
-                    autoAlpha: 0
-                })
-            }, 300)()
-        }
-    })
+    const lenis = useLenis()
 
     // menu items
 	const menuItems = [
@@ -115,8 +97,10 @@ export default function Menu() {
         if (menuAnimationRef.current) {
             if (isShown) {
                 menuAnimationRef.current.play()
+                document.body.style.overflow = 'hidden'
             } else {
                 menuAnimationRef.current.reverse()
+                document.body.style.overflow = 'auto'
             }
         }
 	}, [isShown])
@@ -132,46 +116,14 @@ export default function Menu() {
             ease: 'power2.inOut',
             duration: 1
         })
-
-        menuAnimation.to('#top-menu', {
-            color: '#0d0e13',
-            mixBlendMode: 'normal',
-            ease: 'power2.inOut',
-            duration: .6
-        }, '-=1')
-
-        menuAnimation.to('.top-menu-texts', {
+    
+        menuAnimation.fromTo('.menuLi', {
             y: 50,
             autoAlpha: 0
-        }, '-=.9')
-    
-        menuAnimation.to('.fs-text-open', {
-            autoAlpha: 0,
-            duration: .3,
-            ease: 'power2.inOut',
-        }, '-=.9')
-
-        menuAnimation.to('.fs-text-close', {
-            autoAlpha: 1,
-            duration: .3,
-            ease: 'power2.inOut',
-        }, '-=.9')
-    
-        menuAnimation.fromTo('#top-menu-language', {
-            y: -50,
-            autoAlpha: 0
-        }, {
-            y: 0,
-            autoAlpha: 1
-        }, '-=.5')
-    
-        menuAnimation.fromTo('.fsMenuLi', {
-            y: -100,
-            autoAlpha: 0
         }, {
             y: 0,
             autoAlpha: 1,
-            stagger: .1
+            stagger: .05
         }, '-=.7')
         
         // store the animation timeline in the ref
@@ -182,103 +134,246 @@ export default function Menu() {
         <>
             <section id='top-menu' className={styles.topMenu}>
 				<div className='container'>
-					<div className={clsx(styles.grid, 'grid-container')}>
+                    <div className={styles.flex}>
 
-						<Link
-                            scroll={false}
-							href={routes.home}
-							className={styles.logo}
-                            onClick={closeFsMenu}
-						>
+                        <Link href={routes.home} className={styles.logo} onClick={closeFsMenu}>
+                            <Logo />
+                        </Link>
 
-							<div className={styles.original}>
-								<Logo />
-							</div>
+                        <div className={styles.right}>
 
-							<div className={styles.hover}>
-								<Logo />
-							</div>
+                            <div className={styles.search}>
+                                <MagneticButton>
+                                    <Button href='#' isTransparent>
+                                        <span>Søk</span>
+                                        <UxMagnifier />
+                                    </Button>
+                                </MagneticButton>
+                            </div>
 
-						</Link>
+                            <div className={styles.login}>
+                                <MagneticButton>
+                                    <Button href='#' isHollow>
+                                        <span>Logg inn</span>
+                                        <UxPerson />
+                                    </Button>
+                                </MagneticButton>
+                            </div>
 
-						<div className={clsx(styles.middle, 'grid-md-2-6')}>
-							
-							<div className={clsx(styles.texts, 'top-menu-texts')}>
+                            <MagneticButton>
+                                <Button
+                                    className={clsx(
+                                        styles.openFs,
+                                        isShown && styles.active
+                                    )}
+                                    onClick={openCloseFsMenu}
+                                    type='button'
+                                >
 
-								<div className={clsx(styles.first, 'top-menu-texts-static')}>
-									<p>
-										Saad® is an internationally award-winning boutique brand consultancy <br />
-										specialized in building and transforming the future of businesses.
-									</p>
-								</div>
+                                    <span className={styles.text}>
+                                        <span>Meny</span>
+                                        <span>Lukk</span>
+                                    </span>
 
-								<div className={clsx(styles.second, 'top-menu-texts-scroll')}>
-									<p>
-										Business <span>•</span> Branding <span>•</span> Design
-									</p>
-								</div>
+                                    <div className={styles.icon}>
+                                        
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
 
-							</div>
+                                        <div className={styles.open}>
+                                            <span></span>
+                                            <span></span>
+                                        </div>
 
-							<ul id='top-menu-language' className={styles.language}>
+                                    </div>
 
-								<li>
-									<Link
-                                        scroll={false}
-										href={routes.home}
-										className={styles.active}
-                                        onClick={closeFsMenu}
-									>
-										English
-									</Link>
-								</li>
+                                </Button>
+                            </MagneticButton>
 
-								<li>
-									<Link
-                                        scroll={false}
-										href='./pt-br'
-                                        onClick={closeFsMenu}
-									>
-										Portuguese
-									</Link>
-								</li>
-							</ul>
+                        </div>
 
-						</div>
-
-						<div className={clsx(styles.last, 'grid-md-6-7')}>
-							<button className={styles.openFs} onClick={openCloseFsMenu}>
-								
-								<span className={styles.text}>
-									<span className='fs-text-open'>Menu</span>
-                                    <span className='fs-text-close'>Close</span>
-								</span>
-
-								<span className={styles.block}></span>
-
-							</button>
-						</div>
-						
-					</div>
+                    </div>
 				</div>
 			</section>
 
             <section id='fs-menu' className={styles.fsMenu}>
-                <div className='container'>
-                    <div className='grid-container'>
-                        <ul className={clsx(styles.menu, 'grid-md-2-7')}>
-                            {menuItems.map((item, i) => (
-                                <li key={i} className='fsMenuLi'>
-                                    <Link
-                                        scroll={false}
-                                        href={item.url}
-                                        onClick={closeFsMenu}
-                                    >
-                                        {item.name}
-                                    </Link>
-                                </li> 
-                            ))}
-                        </ul>
+                <div className={clsx(styles.container, 'container')} data-lenis-prevent>
+                    <div className={styles.middle}>
+                        <div className='row'>
+
+                            <div className='col-sm-6 col-lg-4'>
+                                <ul>
+
+                                    <li className={clsx(styles.featured, 'menuLi')}>
+                                        <Link href='#' className='hover-underline-white'>
+                                            <strong>
+                                                Skogtjenester
+                                            </strong>
+                                        </Link>
+                                    </li>
+
+                                    <li className='menuLi'>
+                                        <Link href='#' className='hover-underline'>
+                                            Skogbruksplanlegging
+                                        </Link>
+                                    </li>
+
+                                    <li className='menuLi'>
+                                        <Link href='#' className='hover-underline'>
+                                            Skogsdrift, hogst og tømmersalg
+                                        </Link>
+                                    </li>
+
+                                    <li className='menuLi'>
+                                        <Link href='#' className='hover-underline'>
+                                            Hjelp til tømmeroppgjør
+                                        </Link>
+                                    </li>
+
+                                    <li className='menuLi'>
+                                        <Link href='#' className='hover-underline'>
+                                            Skogkultur, planting og pleie
+                                        </Link>
+                                    </li>
+
+                                    <li className='menuLi'>
+                                        <Link href='#' className='hover-underline'>
+                                            Frivillig vern av skog
+                                        </Link>
+                                    </li>
+
+                                    <li className='menuLi'>
+                                        <Link href='#' className='hover-underline'>
+                                            Reguleringsplan for areal
+                                        </Link>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <div className='col-sm-6 col-lg-4'>
+                                <ul>
+
+                                    <li className={clsx(styles.featured, 'menuLi')}>
+                                        <Link href='#' className='hover-underline-white'>
+                                            <strong>
+                                                Bli andelseier
+                                            </strong>
+                                        </Link>
+                                    </li>
+
+                                    <li className='menuLi'>
+                                        <Link href='#' className='hover-underline'>
+                                            Skogeierlag
+                                        </Link>
+                                    </li>
+
+                                    <li className='menuLi'>
+                                        <Link href='#' className='hover-underline'>
+                                            Skogforsikring
+                                        </Link>
+                                    </li>
+
+                                    <li className='menuLi'>
+                                        <Link href='#' className='hover-underline'>
+                                            Tømmertransport
+                                        </Link>
+                                    </li>
+
+                                    <li className='menuLi'>
+                                        <Link href='#' className='hover-underline'>
+                                            Kartlegging av eiendom
+                                        </Link>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <div className='col-lg-4'>
+                                <ul>
+
+                                    <li className={clsx(styles.featured, 'menuLi')}>
+                                        <Link href='#' className='hover-underline-white'>
+                                            <strong>
+                                                Bærekraft og miljø
+                                            </strong>
+                                        </Link>
+                                    </li>
+
+                                    <li className='menuLi'>
+                                        <Link href='#' className='hover-underline'>
+                                            Sertifisering av tømmer
+                                        </Link>
+                                    </li>
+
+                                    <li className='menuLi'>
+                                        <Link href='#' className='hover-underline'>
+                                            Miljøkrav
+                                        </Link>
+                                    </li>
+
+                                    <li className='menuLi'>
+                                        <Link href='#' className='hover-underline'>
+                                            Biologisk mangfold
+                                        </Link>
+                                    </li>
+
+                                    <li className='menuLi'>
+                                        <Link href='#' className='hover-underline'>
+                                            Skog og klima
+                                        </Link>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <div className='col-sm-6 col-lg-4'>
+                                <ul>
+
+                                    <li className={clsx(styles.featured, 'menuLi')}>
+                                        <Link href='#' className='hover-underline-white'>
+                                            <strong>
+                                                Finn din skogbruksleder
+                                            </strong>
+                                        </Link>
+                                    </li>
+
+                                    <li className={clsx(styles.featured, 'menuLi')}>
+                                        <Link href='#' className='hover-underline-white'>
+                                            <strong>
+                                                Om Allskog
+                                            </strong>
+                                        </Link>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <div className='col-sm-6 col-lg-4'>
+                                <ul>
+
+                                    <li className={clsx(styles.featured, 'menuLi')}>
+                                        <Link href='#' className='hover-underline-white'>
+                                            <strong>
+                                                Arrangementer
+                                            </strong>
+                                        </Link>
+                                    </li>
+
+                                    <li className={clsx(styles.featured, 'menuLi')}>
+                                        <Link href='#' className='hover-underline-white'>
+                                            <strong>
+                                                Aktuelt
+                                            </strong>
+                                        </Link>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+
+                        </div>
                     </div>
                 </div>
             </section>

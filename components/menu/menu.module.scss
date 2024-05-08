@@ -1,28 +1,16 @@
 .topMenu {
-    position: fixed;
-    z-index: 11;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding-top: 1rem;
-    mix-blend-mode: exclusion;
-    
-    @media #{$mq-2xl-min} {
-        padding-top: 2rem;
-    }
+    position: relative;
+    z-index: 99;
+    padding: 1rem 0;
 
-    .grid {
-        @media #{$mq-md-max} {
-            justify-content: space-between;
-            align-items: center;
-        }
+    .flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
 
         .logo {
-            position: relative;
-            overflow: hidden;
-            display: flex;
             width: 6rem;
-            height: fit-content;
 
             @media #{$mq-sm-min} {
                 width: 5rem;
@@ -39,145 +27,124 @@
             @media #{$mq-xl-min} {
                 transform: translateY(.25rem);
             }
-
-            @media #{$mq-md-min} {
-                display: inline-block;
-            }
-
-            &:hover {
-                .original {
-                    transform: translateY(-130%);
-                    transition: .3s ease-in-out;
-                }
-
-                .hover {
-                    transform: none;
-                    transition: .3s ease-in-out;
-                }
-            }
-
-            .original {
-                display: flex;
-                height: auto;
-            }
-
-            .hover {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: auto;
-                display: flex;
-                transform: translateY(130%);
-            }
         }
 
-        .middle {
-            position: absolute;
-            top: 95dvh;
+        .right {
+            display: flex;
+            justify-self: flex-end;
+            align-self: center;
+            gap: .5rem;
 
-            @media #{$mq-sm-min} {
-                position: relative;
-                top: auto;
+            @media #{$mq-md-min} {
+                gap: 1rem;
             }
-            
-            .texts {
-                position: relative;
 
-                @media #{$mq-sm-max} {
-                    display: none;
-                }
-
-                .first {
-                    @media #{$mq-lg-max} {
-                        display: none;
+            .search,
+            .login {
+                button,
+                a {
+                    @media #{$mq-md-max} {
+                        padding: .75rem;
+                        height: 3rem;
                     }
-                }
 
-                .second {
-                    @media #{$mq-lg-min} {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        visibility: hidden;
-                        opacity: 0;
+                    @media #{$mq-xs-max} {
+                        padding: .5rem;
+                        height: 2.5rem;
                     }
 
                     span {
-                        display: inline-block;
-                        vertical-align: middle;
-                        font-size: 50%;
-                        padding: 0 .5rem;
-                    }
-                }
-            }
-
-            .language {
-                position: absolute;
-                top: 0;
-                left: 0;
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-                opacity: 0;
-                visibility: hidden;
-
-                li {
-                    a {
-                        opacity: .5;
-                        transition: .3s ease-in-out;
-
-                        &.active,
-                        &:hover {
-                            opacity: 1;
+                        @media #{$mq-md-max} {
+                            display: none;
                         }
                     }
                 }
             }
-        }
-
-        .last {
-            justify-self: flex-end;
-            align-self: center;
 
             .openFs {
-                position: relative;
-                display: flex;
-                width: 4.5rem;
-                height: 1.5rem;
-                align-items: center;
-                justify-content: flex-end;
+                border: 1px solid transparent;
 
-                @media #{$mq-sm-min} {
-                    height: 2rem;
+                @media #{$mq-md-max} {
+                    height: 3rem;
+                    padding: .75rem 1.5rem;
                 }
 
-                @media #{$mq-lg-min} {
-                    transform: translateY(-.5rem);
+                @media #{$mq-xs-max} {
+                    padding: .5rem 1rem;
+                    height: 2.5rem;
                 }
 
                 &:hover {
+                    .icon {
+                        > span {
+                            &:first-child {
+                                top: calc(100% - 1px);
+                            }
+
+                            &:nth-child(3) {
+                                bottom: calc(100% - 1px);
+                            }
+                        }
+                    }
+                }
+
+                &.active {
+                    background-color: $black;
+                    border: 1px solid $black;
+
                     .text {
-                        opacity: 1;
-                        right: 1.5rem;
+                        span {
+                            &:first-child {
+                                opacity: 0;
+                                visibility: hidden;    
+                            }
+
+                            &:last-child {
+                                opacity: 1;
+                                visibility: visible;
+                            }
+                        }
                     }
 
-                    .block {
-                        animation: none;
-                        transform: rotate(180deg);
+                    .icon {
+                        > span {
+                            &:first-child {
+                                transform: translateX(150%);
+                                transition-delay: .2s;
+                            }
+
+                            &:nth-child(2) {
+                                transform: translateX(-150%);
+                                transition-delay: .1s;
+                            }
+
+                            &:nth-child(3) {
+                                transform: translateX(150%);
+                            }
+                        }
+
+                        .open {
+                            span {
+                                &:first-child {
+                                    transform: rotate(45deg);
+                                    transition-delay: .3s;
+                                }
+
+                                &:last-child {
+                                    transform: rotate(-45deg);
+                                    transition-delay: .4s;
+                                }
+                            }
+                        }
                     }
                 }
 
                 .text {
-                    position: absolute;
-                    z-index: 0;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    right: 0;
-                    opacity: 0;
-                    transition: .3s ease-in-out;
+                    position: relative;
 
                     span {
+                        transition: .3s ease-in-out;
+                        
                         &:last-child {
                             position: absolute;
                             top: 0;
@@ -188,36 +155,66 @@
                     }
                 }
 
-                .block {
+                .icon {
                     position: relative;
-                    z-index: 2;
-                    display: block;
-                    width: 1rem;
-                    height: 1rem;
-                    background-color: currentColor;
-                    animation: blink 4s infinite linear;
-                    transition: .3s ease-in-out
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 1.25rem;
+                    height: calc(.8125rem + 2px);
+
+                    > span {
+                        width: 100%;
+                        height: 1px;
+                        border-radius: 1px;
+                        background-color: $white;
+                        transition: .3s ease-in-out;
+                        
+                        &:first-child,
+                        &:nth-child(3) {
+                            position: absolute;
+                            left: 0;
+                        }
+
+                        &:first-child {
+                            top: 1px;
+                        }
+
+                        &:nth-child(3) {
+                            bottom: 1px;
+                        }
+                    }
+
+                    .open {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+
+                        span {
+                            position: absolute;
+                            top: 50%;
+                            left: 0;
+                            display: block;
+                            width: 100%;
+                            height: 1px;
+                            background-color: $white;
+                            transition: .3s ease-in-out;
+
+                            &:first-child {
+                                transform: rotate(45deg) translateX(-2rem);
+                            }
+
+                            &:last-child {
+                                transform: rotate(-45deg) translateX(2rem);
+                            }
+                        }
+                    }
                 }
             }
         }
-    }
-}
-
-@keyframes blink {
-    0% {
-        opacity: 1;
-    }
-
-    30% {
-        opacity: 0;
-    }
-
-    60% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 1;
     }
 }
 
@@ -228,51 +225,44 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: $white;
+    background-color: $green;
     color: $black;
-    padding-top: 6rem;
+    padding-top: 4rem;
     clip-path: inset(0 0 100% 0);
 
-    .menu {
+    .container {
+        height: 100%;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        padding-top: 2rem;
+
         @media #{$mq-md-min} {
-            margin-left: -.5rem;
+            padding-top: 8rem;
         }
 
-        a {
-            position: relative;
-            display: inline-block;
-            font-size: 15vw;
-            line-height: 1.3;
-            text-transform: uppercase;
+        @media #{$mq-2xl-min} {
+            padding-top: 10rem;
+        }
 
-            @media #{$mq-sm-min} {
-                line-height: 1;
-            }
+        .middle {
+            padding-bottom: var(--smaller);
 
-            @media #{$mq-xl-min} {
-                font-size: 20vh;
-            }
+            ul {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: var(--smallest);
+                gap: .5rem;
 
-            &:hover {
-                &:before {
-                    transform: scaleY(47.5%);
-                    border-color: $black;
+                .featured {
+                    a {
+                        font-size: 1.375rem;
+
+                        &:after {
+                            background-color: $green;
+                        }
+                    }
                 }
-            }
-
-            &:before {
-                content: '';
-                position: absolute;
-                z-index: 2;
-                bottom: 0;
-                left: 0;
-                width: 100vw;
-                height: 100%;
-                background-color: $white;
-                transition: .3s ease-in-out;
-                border-top: 1px solid transparent;
-                transform: scaleY(0);
-                transform-origin: bottom left;
             }
         }
     }

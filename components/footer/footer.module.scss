@@ -6,11 +6,6 @@
         display: block;
         margin-bottom: var(--smaller);
         width: 6rem;
-        transition: .3s ease-in-out;
-
-        &:hover {
-            color: darken($green, 30);
-        }
     }
 
     .blocks {

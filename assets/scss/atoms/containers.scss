@@ -1,11 +1,14 @@
 .container {
-	width: 100%;
-	max-width: calc(100% - 4rem);
-	margin-left: auto;
-	margin-right: auto;
+	max-width: calc(100% - 2rem);
+	padding-left: 0;
+	padding-right: 0;
+
+	@media #{$mq-sm-min} {
+		max-width: calc(100% - 4rem);
+	}
     
 	@media #{$mq-2xl-min} {
-        max-width: calc(100vw - 8rem);
+        max-width: calc(100vw - 12rem);
     }   
 }
 

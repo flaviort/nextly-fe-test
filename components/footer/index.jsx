@@ -2,6 +2,7 @@
 import Link from 'next/link'
 
 // components
+import Logo from '@/components/utils/logo'
 import { MagneticButton } from '@/components/utils/animations'
 
 // routes / utils
@@ -9,7 +10,6 @@ import routes from '@/utils/routes'
 import { phone, email } from '@/utils/functions'
 
 // svgs
-import Logo from '@/assets/svg/logos/logo.svg'
 import SocialFacebook from '@/assets/svg/social/facebook.svg'
 import SocialYoutube from '@/assets/svg/social/youtube.svg'
 

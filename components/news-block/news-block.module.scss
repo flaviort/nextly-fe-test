@@ -13,7 +13,7 @@
         transform: translateY(-.5rem);
         box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, .1), inset 0 0 0 1px $black;
 
-        .icon {
+        .arrow {
             svg {
                 transform: translateX(150%);
             }
@@ -28,29 +28,10 @@
         height: 0;
         padding-bottom: 80%;
         margin-bottom: .5rem;
+        border-radius: .25rem;
 
         @media #{$mq-sm-min} {
             padding-bottom: 65%;
-        }
-    }
-
-    .icon {
-        position: absolute;
-        bottom: var(--smallest);
-        left: var(--smallest);
-        overflow: hidden;
-        width: 1.5rem;
-        min-width: 1.5rem;
-        height: 1.5rem;
-
-        svg {
-            transition: .3s ease-in-out;
-
-            &:first-child {
-                position: absolute;
-                top: 0;
-                left: -150%;
-            }
         }
     }
 }

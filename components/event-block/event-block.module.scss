@@ -22,7 +22,7 @@
         box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, .1), inset 0 0 0 1px $black;
 
         .last {
-            .icon {
+            .arrow {
                 svg {
                     transform: translateX(150%);
                 }
@@ -94,7 +94,6 @@
 
     .last {
         display: flex;
-        justify-content: flex-end;
 
         @media #{$mq-sm-min} {
             position: absolute;
@@ -103,24 +102,6 @@
             transform: translateY(-50%);
             align-items: center;
             justify-content: center;
-        }
-
-        .icon {
-            position: relative;
-            overflow: hidden;
-            width: 1.5rem;
-            min-width: 1.5rem;
-            height: 1.5rem;
-
-            svg {
-                transition: .3s ease-in-out;
-
-                &:first-child {
-                    position: absolute;
-                    top: 0;
-                    left: -150%;
-                }
-            }
         }
     }
 }

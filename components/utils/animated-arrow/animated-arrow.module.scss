@@ -1,0 +1,24 @@
+.icon {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 1.5rem;
+    min-width: 1.5rem;
+    height: 1.5rem;
+
+    &:hover {
+        svg {
+            transform: translateX(150%);
+        }
+    }
+
+    svg {
+        transition: .3s ease-in-out;
+
+        &:first-child {
+            position: absolute;
+            top: 0;
+            left: -150%;
+        }
+    }
+}

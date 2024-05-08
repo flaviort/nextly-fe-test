@@ -191,3 +191,26 @@ body {
 		display: flex;
 	}
 }
+
+.skip-content {
+	position: absolute;
+	z-index: -999;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	left: -99rem;
+	top: -99rem;
+	line-height: 1;
+
+	&:focus {
+		z-index: 9999;
+		width: auto;
+		height: auto;
+		top: 1rem;
+		left: 1rem;
+		background-color: $black;
+		color: $white;
+		border-radius: .25rem;
+		padding: .5rem 1rem;
+	}
+}

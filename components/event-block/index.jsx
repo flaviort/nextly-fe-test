@@ -3,10 +3,9 @@ import clsx from 'clsx'
 import Link from 'next/link'
 
 // components
-import { MagneticButton } from '@/components/utils/animations'
+import AnimatedArrow from '@/components/utils/animated-arrow'
 
 // svg
-import UxArrowRight from '@/assets/svg/ux/arrow-right.svg'
 import UxPin from '@/assets/svg/ux/pin.svg'
 import UxCalendar from '@/assets/svg/ux/calendar.svg'
 import UxClock from '@/assets/svg/ux/clock.svg'
@@ -14,66 +13,77 @@ import UxClock from '@/assets/svg/ux/clock.svg'
 // css
 import styles from './event-block.module.scss'
 
-export default function EventBlock({ link, date, title, description, location, completeDate, time }) {
+export default function EventBlock({ className, link, date, title, description, location, completeDate, time }) {
     return (
-        <MagneticButton fullWidth>
-            <Link href={link} className={styles.block}>
-                
-                <div className={styles.left}>
+        <Link href={link} className={clsx(styles.block, className)}>
+            
+            <div className={styles.left}>
 
+                {date && (
                     <p className={styles.date}>
                         {date}
                     </p>
+                )}
 
+                {title && (
                     <p className={clsx(styles.title, 'font-medium')}>
                         <strong>
                             {title}
                         </strong>
                     </p>
+                )}
 
-                </div>
+            </div>
 
-                <div className={styles.right}>
+            <div className={styles.right}>
 
+                {description && (
                     <p className={styles.description}>
                         {description}
                     </p>
+                )}
 
+                {location || completeDate || time ? (
                     <ul className={styles.items}>
 
-                        <li>
-                            <UxPin />
-                            <p>
-                                {location}
-                            </p>
-                        </li>
+                        {location && (
+                            <li>
+                                <UxPin />
+                                <p>
+                                    {location}
+                                </p>
+                            </li>
+                        )}
 
-                        <li>
-                            <UxCalendar />
-                            <p>
-                                {completeDate}
-                            </p>
-                        </li>
+                        {completeDate && (
+                            <li>
+                                <UxCalendar />
+                                <p>
+                                    {completeDate}
+                                </p>
+                            </li>
+                        )}
 
-                        <li>
-                            <UxClock />
-                            <p>
-                                {time}
-                            </p>
-                        </li>
+                        {time && (
+                            <li>
+                                <UxClock />
+                                <p>
+                                    {time}
+                                </p>
+                            </li>
+                        )}
 
                     </ul>
+                ) : (
+                    null
+                )}
 
-                </div>
+            </div>
 
-                <div className={styles.last}>
-                    <div className={styles.icon}>
-                        <UxArrowRight />
-                        <UxArrowRight />
-                    </div>
-                </div>
+            <div className={styles.last}>
+                <AnimatedArrow className={styles.arrow} />
+            </div>
 
-            </Link>
-        </MagneticButton>
+        </Link>
     )
 }

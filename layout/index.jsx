@@ -11,7 +11,7 @@ export default function Layout({ bodyClass, pageTitle, pageDescription, children
 				pageDescription={pageDescription}
 			/>
 
-            { children }
+            {children}
 
             <Footer />
         </>

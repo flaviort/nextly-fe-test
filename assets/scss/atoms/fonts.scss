@@ -32,59 +32,21 @@
 }
 
 .font-bigger {
-	font-size: 2.25rem;
-	line-height: 1.3;
-
-	@media #{$mq-xs-min} {
-		font-size: 2.75rem;
-	}
+	font-size: 2rem;
+	line-height: 1.2;
 
 	@media #{$mq-sm-min} {
-		font-size: 3rem;
-		line-height: 1.2;
+		font-size: 2.5rem;
 	}
 
 	@media #{$mq-md-min} {
-		font-size: 3.25rem;
-	}
-
-	@media #{$mq-lg-min} {
-		font-size: 3.5rem;
-	}
-
-	@media #{$mq-xl-min} {
-		font-size: 4rem;
-	}
-}
-
-.font-biggest {
-	font-size: 3.5rem;
-	line-height: 1.2;
-
-	@media #{$mq-xs-min} {
-		font-size: 4rem;
-	}
-
-	@media #{$mq-sm-min} {
-		font-size: 4.5rem;
+		font-size: 3rem;
 		line-height: 1.1;
 	}
 
-	@media #{$mq-md-min} {
-		font-size: 5rem;
-	}
-
-	@media #{$mq-lg-min} {
-		font-size: 6rem;
-		line-height: 1;
-	}
-
 	@media #{$mq-xl-min} {
-		font-size: 7rem;
-	}
-
-	@media #{$mq-2xl-min} {
-		font-size: 8rem;
+		font-size: 3.5rem;
+		line-height: 1;
 	}
 }
 

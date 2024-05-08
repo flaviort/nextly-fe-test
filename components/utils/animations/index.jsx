@@ -6,6 +6,9 @@ import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import { SplitText } from 'gsap/dist/SplitText'
 gsap.registerPlugin(ScrollTrigger, SplitText)
 
+// hooks
+import { vw } from '@/utils/functions'
+
 // css
 import styles from './animations.module.scss'
 
@@ -123,6 +126,35 @@ export function FillTitle({ text }) {
     )
 }
 
+// animated slider
+export function AnimatedSlider({ children }) {
+
+    const item = useRef(null)
+
+    useGSAP(() => {
+
+        const slides = item.current.querySelectorAll('.swiper-slide')
+
+        gsap.from(slides, {
+            x: vw(75),
+            autoAlpha: 0,
+            duration: 1,
+            stagger: .125,
+            scrollTrigger: {
+                trigger: item.current,
+                start: '0 100%'
+            }
+        })
+    })
+
+    return (
+        <div ref={item}>
+            {children}
+        </div>
+    )
+
+}
+
 // animated line effect
 export function AnimatedLine({ opacity = 1 }) {
     
@@ -171,9 +203,9 @@ export function Counter({ number }) {
             }
         })
 
-        // format the number in US standard
+        // format the number in NO standard
         function formatNumber(value) {
-            return Math.floor(+value)
+            return Math.floor(+value).toLocaleString('nb-NO')
         }
 	})
 
