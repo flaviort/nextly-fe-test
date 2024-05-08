@@ -42,7 +42,7 @@ export default function App({ Component, pageProps, router }) {
 
 				<CustomScrollbar />
 
-				<main id='main' role='main' data-scroll-container>
+				<main id='main' data-scroll-container>
 
 					<Component key={router.route} {...pageProps} />
 

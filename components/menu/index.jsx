@@ -206,11 +206,13 @@ export default function Menu() {
                                 <ul>
 
                                     <li className={clsx(styles.featured, 'menuLi')}>
-                                        <Link href='#' className='hover-underline-white'>
-                                            <strong>
-                                                Skogtjenester
-                                            </strong>
-                                        </Link>
+                                        <h2>
+                                            <Link href='#' className='hover-underline-white'>
+                                                <strong>
+                                                    Skogtjenester
+                                                </strong>
+                                            </Link>
+                                        </h2>
                                     </li>
 
                                     <li className='menuLi'>
@@ -256,11 +258,13 @@ export default function Menu() {
                                 <ul>
 
                                     <li className={clsx(styles.featured, 'menuLi')}>
-                                        <Link href='#' className='hover-underline-white'>
-                                            <strong>
-                                                Bli andelseier
-                                            </strong>
-                                        </Link>
+                                        <h2>
+                                            <Link href='#' className='hover-underline-white'>
+                                                <strong>
+                                                    Bli andelseier
+                                                </strong>
+                                            </Link>
+                                        </h2>
                                     </li>
 
                                     <li className='menuLi'>
@@ -294,11 +298,13 @@ export default function Menu() {
                                 <ul>
 
                                     <li className={clsx(styles.featured, 'menuLi')}>
-                                        <Link href='#' className='hover-underline-white'>
-                                            <strong>
-                                                Bærekraft og miljø
-                                            </strong>
-                                        </Link>
+                                        <h2>
+                                            <Link href='#' className='hover-underline-white'>
+                                                <strong>
+                                                    Bærekraft og miljø
+                                                </strong>
+                                            </Link>
+                                        </h2>
                                     </li>
 
                                     <li className='menuLi'>
@@ -332,19 +338,23 @@ export default function Menu() {
                                 <ul>
 
                                     <li className={clsx(styles.featured, 'menuLi')}>
-                                        <Link href='#' className='hover-underline-white'>
-                                            <strong>
-                                                Finn din skogbruksleder
-                                            </strong>
-                                        </Link>
+                                        <h2>
+                                            <Link href='#' className='hover-underline-white'>
+                                                <strong>
+                                                    Finn din skogbruksleder
+                                                </strong>
+                                            </Link>
+                                        </h2>
                                     </li>
 
                                     <li className={clsx(styles.featured, 'menuLi')}>
-                                        <Link href='#' className='hover-underline-white'>
-                                            <strong>
-                                                Om Allskog
-                                            </strong>
-                                        </Link>
+                                        <h2>
+                                            <Link href='#' className='hover-underline-white'>
+                                                <strong>
+                                                    Om Allskog
+                                                </strong>
+                                            </Link>
+                                        </h2>
                                     </li>
 
                                 </ul>
@@ -354,19 +364,23 @@ export default function Menu() {
                                 <ul>
 
                                     <li className={clsx(styles.featured, 'menuLi')}>
-                                        <Link href='#' className='hover-underline-white'>
-                                            <strong>
-                                                Arrangementer
-                                            </strong>
-                                        </Link>
+                                        <h2>
+                                            <Link href='#' className='hover-underline-white'>
+                                                <strong>
+                                                    Arrangementer
+                                                </strong>
+                                            </Link>
+                                        </h2>
                                     </li>
 
                                     <li className={clsx(styles.featured, 'menuLi')}>
-                                        <Link href='#' className='hover-underline-white'>
-                                            <strong>
-                                                Aktuelt
-                                            </strong>
-                                        </Link>
+                                        <h2>
+                                            <Link href='#' className='hover-underline-white'>
+                                                <strong>
+                                                    Aktuelt
+                                                </strong>
+                                            </Link>
+                                        </h2>
                                     </li>
 
                                 </ul>
