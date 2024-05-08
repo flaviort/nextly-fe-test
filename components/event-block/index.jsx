@@ -26,11 +26,11 @@ export default function EventBlock({ className, link, date, title, description, 
                 )}
 
                 {title && (
-                    <p className={clsx(styles.title, 'font-medium')}>
+                    <h3 className={clsx(styles.title, 'font-medium')}>
                         <strong>
                             {title}
                         </strong>
-                    </p>
+                    </h3>
                 )}
 
             </div>

@@ -165,9 +165,9 @@ export default function Home() {
 										</b>
 									</p>
 
-									<p>
+									<h3>
 										{item.text}
-									</p>
+									</h3>
 
 								</div>
 							</div>

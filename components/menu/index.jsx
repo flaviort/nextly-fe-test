@@ -132,7 +132,7 @@ export default function Menu() {
 
     return (
         <>
-            <section id='top-menu' className={styles.topMenu}>
+            <div id='top-menu' className={styles.topMenu}>
 				<div className='container'>
                     <div className={styles.flex}>
 
@@ -177,14 +177,14 @@ export default function Menu() {
 
                                     <div className={styles.icon}>
                                         
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
+                                        <span className={styles.line}></span>
+                                        <span className={styles.line}></span>
+                                        <span className={styles.line}></span>
 
-                                        <div className={styles.open}>
+                                        <span className={styles.open}>
                                             <span></span>
                                             <span></span>
-                                        </div>
+                                        </span>
 
                                     </div>
 
@@ -195,7 +195,7 @@ export default function Menu() {
 
                     </div>
 				</div>
-			</section>
+			</div>
 
             <section id='fs-menu' className={styles.fsMenu}>
                 <div className={clsx(styles.container, 'container')} data-lenis-prevent>
